@@ -1,6 +1,6 @@
 pacman::p_load(LexisPlotR, dplyr, ggplot2, purrr, randomcoloR)
 
-
+#### Questao 1
 mes <- "01" # Janeiro
 dia <- "01" # Primeiro
 anos <- as.character(seq(2008,2013,1))
@@ -19,10 +19,10 @@ for (i in 1:N) {
   lexis <- lexis +
     annotate(geom = "rect", fill = cores14[i], alpha = 0.7,
              xmin = datas[i], xmax = datas[i+1],
-             ymin = 1, ymax = 4) +
+             ymin = 1, ymax = 5) +
     annotate(geom = "text", label = labels14[i],
              x = datas[i] + 366/2, # Meio do ano
-             y = (4+1)/2) +
+             y = (5+1)/2) +
     annotate(geom = "rect", fill = cores01[i], alpha = 0.7,
              xmin = datas[i], xmax = datas[i+1],
              ymin = 0, ymax = 1) +
