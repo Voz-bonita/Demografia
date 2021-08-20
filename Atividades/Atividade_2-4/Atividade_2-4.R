@@ -10,9 +10,11 @@ N <- length(anos)-1
 labels01 <- c(525, 522, 559, 499, 506)
 labels14 <- c(73, 69, 71, 71, 65)
 
-cores14 <- randomColor(count = N, luminosity="dark")
-cores01 <- randomColor(count = N, luminosity="light")
-
+# set.seed nao funcionou
+# cores14 <- randomColor(count = N, luminosity="dark")
+#cores01 <- randomColor(count = N, luminosity="light")
+cores14 <- c("#bc5912", "#9e013d", "#037a09", "#068744", "#0b428e")
+cores01 <- c("#b2f78f", "#fcf99c", "#b5e3fc", "#a2b8ef", "#c1ff7f")
 
 lexis <- lexis_grid(year_start = 2008-5, year_end = 2014, age_start = 0, age_end = 5) +
     labs(x = "Anos", y = "Idade")
@@ -32,7 +34,7 @@ for (i in 1:N) {
              y = (0+1)/2)
 }
 
-lexis + ggsave("Atividades/Atividade_2-4/Q1.png")
+lexis
 
 ### Questao 2a
 rm(list = ls())
@@ -85,4 +87,4 @@ for (i in 1:N) {
   align <- -align
 }
 
-lexis + ggsave("Atividades/Atividade_2-4/Q3.png")
+lexis
