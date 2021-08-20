@@ -14,7 +14,7 @@ cores14 <- randomColor(count = N, luminosity="dark")
 cores01 <- randomColor(count = N, luminosity="light")
 
 
-lexis <- lexis_grid(year_start = 2008-4, year_end = 2014, age_start = 0, age_end = 5)
+lexis <- lexis_grid(year_start = 2008-5, year_end = 2014, age_start = 0, age_end = 5)
 for (i in 1:N) {
   lexis <- lexis +
     annotate(geom = "rect", fill = cores14[i], alpha = 0.7,
@@ -32,3 +32,34 @@ for (i in 1:N) {
 }
 
 lexis + ggsave("Atividades/Atividade_2-4/Q1.png")
+
+### Questao 2a
+## 1999
+obt99 <- c(463,138,34,23,19,10,11,10,7,4)
+1 - sum(obt99)/26498
+
+## 2000
+obt00 <- c(487,100,28,13,9,15,9,10,9,1)
+1 - sum(obt00)/26205
+
+## 2001
+obt01 <- c(486,73,28,25,12,7,7,11,6,8)
+1 - sum(obt01)/27050
+
+## 2002
+obt02 <- c(455,81,24,14,10,6,9,6,8,10)
+1 - sum(obt02)/26274
+
+### Questao 2b
+## 1999 - 2006
+(463+138)/26498
+(487+100)/26205
+(486+73)/27050
+(455+81)/26274
+(433+61)/26053
+(421+57)/25673
+(392+75)/26368
+(385+65)/36028
+
+
+
