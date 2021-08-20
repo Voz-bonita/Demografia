@@ -14,7 +14,8 @@ cores14 <- randomColor(count = N, luminosity="dark")
 cores01 <- randomColor(count = N, luminosity="light")
 
 
-lexis <- lexis_grid(year_start = 2008-5, year_end = 2014, age_start = 0, age_end = 5)
+lexis <- lexis_grid(year_start = 2008-5, year_end = 2014, age_start = 0, age_end = 5) +
+    labs(x = "Anos", y = "Idade")
 for (i in 1:N) {
   lexis <- lexis +
     annotate(geom = "rect", fill = cores14[i], alpha = 0.7,
@@ -34,6 +35,7 @@ for (i in 1:N) {
 lexis + ggsave("Atividades/Atividade_2-4/Q1.png")
 
 ### Questao 2a
+rm(list = ls())
 ## 1999
 obt99 <- c(463,138,34,23,19,10,11,10,7,4)
 1 - sum(obt99)/26498
@@ -61,5 +63,26 @@ obt02 <- c(455,81,24,14,10,6,9,6,8,10)
 (392+75)/26368
 (385+65)/36028
 
+### Questao 3
+rm(list = ls())
+obitos <- c(12500,4058,1023,854,
+            410,300,274,221,186)
+idades <- seq(0.25,4.25,0.5)
+N <- length(obitos)
 
+ano_interesse <- as.Date("1995-01-01") + 366/2 # Meio do ano
+align <- 30 # Distorcao para separar os anos
 
+lexis <- lexis_grid(year_start = 1991, year_end = 1997, age_start = 0, age_end = 5) %>%
+  lexis_year(year = 1995) +
+  labs(x = "Anos", y = "Idade")
+
+for (i in 1:N) {
+  lexis <- lexis +
+    annotate(geom = "text", label = obitos[i],
+             x = ano_interesse + align,
+             y = idades[i])
+  align <- -align
+}
+
+lexis + ggsave("Atividades/Atividade_2-4/Q3.png")
