@@ -36,6 +36,7 @@ for (i in 1:N) {
 
 lexis
 
+
 ### Questao 2a
 rm(list = ls())
 ## 1999
@@ -65,6 +66,7 @@ obt02 <- c(455,81,24,14,10,6,9,6,8,10)
 (392+75)/26368
 (385+65)/36028
 
+
 ### Questao 3
 rm(list = ls())
 obitos <- c(12500,4058,1023,854,
@@ -88,3 +90,27 @@ for (i in 1:N) {
 }
 
 lexis
+
+
+### Questao 4
+rm(list = ls())
+idades <- seq(12.5,52.5,5)
+anos <- as.character(seq(2014-45,2014,5))
+n_filhos <- c(3,317,537,393,223,131,63,17,2)
+N <- length(idades)
+
+dia <- "01"
+mes <- "01"
+datas <- as.Date(map_chr(anos, ~paste(.x, mes, dia, sep = "-")))
+lexis <- lexis_grid(year_start = 2014-45, year_end = 2014, age_start = 10, age_end = 55) %>%
+  lexis_cohort(cohort = 2014-45) +
+  theme(axis.text.x = element_text(angle = -20)) +
+  scale_x_continuous(breaks = datas) +
+  scale_y_continuous(breaks = seq(10,55,5)) +
+  xlab("Anos") + ylab("Idade")
+
+for (i in 1:N) {
+  lexis <- lexis +
+    annotate(geom = "text", label = n_filhos[i],
+             x = datas[i] + 365.25*2.5, y = idades[i])
+}
