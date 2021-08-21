@@ -102,8 +102,8 @@ N <- length(idades)
 dia <- "01"
 mes <- "01"
 datas <- as.Date(map_chr(anos, ~paste(.x, mes, dia, sep = "-")))
-lexis <- lexis_grid(year_start = 2014-45, year_end = 2014, age_start = 10, age_end = 55) %>%
-  lexis_cohort(cohort = 2014-45) +
+lexis <- lexis_grid(year_start = 2014-45, year_end = 2015, age_start = 10, age_end = 55) %>%
+  lexis_cohort(cohort = 2014-45, d = 5) +
   theme(axis.text.x = element_text(angle = -20)) +
   scale_x_continuous(breaks = datas) +
   scale_y_continuous(breaks = seq(10,55,5)) +
@@ -112,5 +112,7 @@ lexis <- lexis_grid(year_start = 2014-45, year_end = 2014, age_start = 10, age_e
 for (i in 1:N) {
   lexis <- lexis +
     annotate(geom = "text", label = n_filhos[i],
-             x = datas[i] + 365.25*2.5, y = idades[i])
+             x = datas[i] + 365.25*5, y = idades[i])
 }
+
+lexis
