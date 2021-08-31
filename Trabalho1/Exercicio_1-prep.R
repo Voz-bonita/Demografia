@@ -1,4 +1,5 @@
 #### NOT RUN {
+pacman::p_load(LexisPlotR, ggplot2, dplyr, read.dbc, tibble, purrr, stringr)
 ### Algoritmo dedicado à preparação dos dados do exercicio 1 do trabalho
 
 
