@@ -36,15 +36,16 @@ for (i in 1:n_anos) {
 }
 
 ## Dados do SIM
-end <- idade_max+1
+end <- idade_max*2
 # Idades para posicionar os labels
-idades_meio <- c(0.25, seq(1, idade_max-1), idade_max-0.25)
+idades_meio <- seq(0.25, 4.75, 0.5)
+anos_frente <- c(0, rep(1:4, each = 2), 5)
 for (j in 1:n_anos) {
   for (i in 1:end) {
     lexis <- lexis +
     annotate(geom = "text", label = obitos[i,j],
              # Ajuste diferente na primeira e na última observação por conta do posicionamento da diagonal
-             x = datas[j] + 366/2 + 15 + 15*min(1,i) + 365.25*(i-1) -50*max(0,i-5), y = idades_meio[i],
+             x = datas[j] + 366/2 + 365.25*anos_frente[i] + 30*((i %% 2)*2 - 1), y = idades_meio[i],
              color = "red")
   }
   if (anos[j] >= (ano_fim-4)) {
@@ -54,7 +55,12 @@ for (j in 1:n_anos) {
 
 ##### Probabilidade de sobreviver ate a idade exata 5 anos
 obitos.coorte <- map_dbl(obitos[as.character(ano_inicio:(ano_fim-idade_max))], sum)
-probs <- 1 - obitos.coorte/nascidos.vivos[1:(n_anos-idade_max)]
+probs.coorte <- 1 - obitos.coorte/nascidos.vivos[1:(n_anos-idade_max)]
+round(probs.coorte*100, 2)
 
 ##### Probabilidade de sobrevir ate o primeiro aniversário
-# obitos[1,] representa os obitos
+# obitos[1:2,] representa os obitos de menores de 1 ano
+ida_max <- 1
+obitos.m1ano <- map_dbl(obitos[1:2, 1:(n_anos-ida_max)], sum)
+probs.m1ano <- 1 - obitos.m1ano/nascidos.vivos[1:(n_anos-ida_max)]
+round(probs.m1ano*100, 2)
