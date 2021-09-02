@@ -51,3 +51,10 @@ for (j in 1:n_anos) {
     end <- end - 1
   }
 }
+
+##### Probabilidade de sobreviver ate a idade exata 5 anos
+obitos.coorte <- map_dbl(obitos[as.character(ano_inicio:(ano_fim-idade_max))], sum)
+probs <- 1 - obitos.coorte/nascidos.vivos[1:(n_anos-idade_max)]
+
+##### Probabilidade de sobrevir ate o primeiro aniversário
+# obitos[1,] representa os obitos
