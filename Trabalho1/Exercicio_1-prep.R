@@ -14,7 +14,7 @@ f.idade <- function (base, past, idade){
 }
 
 ano_inicio <- 2000
-ano_fim <- 2019
+ano_fim <- 2020
 anos <- seq(ano_inicio, ano_fim)
 
 mes <- "01" # Janeiro
