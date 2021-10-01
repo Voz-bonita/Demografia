@@ -73,7 +73,7 @@ obitos_coorte <- ggplot() +
                      labels = plot_y_scale.lab)  +
   theme_bw() +
   xlab("Anos") + ylab("Probabilidade de sobreviver à idade exata 5 anos")
-ggsave("Trabalho1/Assets/Obitos5a.png", obitos_coorte)
+# ggsave("Trabalho1/Assets/Obitos5a.png", obitos_coorte)
 
 
 
@@ -97,4 +97,4 @@ obitos_1a <- ggplot() +
                      labels = plot_y_scale.lab)  +
   theme_bw() +
   xlab("Anos") + ylab("Probabilidade de sobreviver até primeiro aniversário")
-ggsave("Trabalho1/Assets/Obitos1a.png", obitos_1a)
+# ggsave("Trabalho1/Assets/Obitos1a.png", obitos_1a)
