@@ -1,4 +1,23 @@
-pacman::p_load('ggplot2', 'purrr', 'stringr', 'openxlsx', 'xtable')
+pacman::p_load('ggplot2', 'purrr', 'stringr', 'openxlsx', 'xtable', 'tidyr', 'dplyr')
+
+
+#### Item a) ----------------------------------
+nmx <- read.csv('Trabalho1/3anmx.csv') %>%
+  rename_all(~c("Faixa_Etaria", "Masculino", "Feminino", "Total")) %>%
+  select(c(Faixa_Etaria, Masculino, Feminino)) %>%
+  pivot_longer(cols = c(Masculino, Feminino)) %>%
+  rename_all(~c("Faixa_Etaria", "Sexo", "nMx")) %>%
+  mutate(Faixa_Etaria = factor(Faixa_Etaria, levels = unique(Faixa_Etaria)))
+
+ggplot(nmx, aes(x = Faixa_Etaria, y = nMx,
+                colour = Sexo, group = Sexo)) +
+  geom_line(size = 1.1) +
+  geom_point(size = 2, stroke = 0) +
+  xlab("Faixa Etária") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5),
+        legend.position="bottom")
+
 
 #### Item d) ----------------------------------
 obitos_cid <- read.csv("Trabalho1/Obitos_CID10.csv", header = TRUE)
@@ -34,12 +53,16 @@ TeX_names <- c('$x$', '$n$', '$_{n}M_x$',
 colnames(tabua_masculino) <- TeX_names
 colnames(tabua_feminino) <- TeX_names
 
-print(xtable(tabua_masculino, caption = "Tábua de vida para o sexo masculino, no estado de São Paulo."),
+## Faz com que o print mostre a primeira coluna como valores inteiros
+tabua_masculino$`$x$` <- factor(tabua_masculino$`$x$`, levels = tabua_masculino$`$x$`)
+tabua_feminino$`$x$` <- factor(tabua_feminino$`$x$`, levels = tabua_feminino$`$x$`)
+
+print(xtable(tabua_masculino, caption = "Tábua de vida para o sexo masculino, em 2019, no estado de São Paulo."),
       sanitize.text.function=function(x){x},
       latex.environments = "center",
       caption.placement = "top",
       include.rownames=FALSE)
-print(xtable(tabua_feminino, caption = "Tábua de vida para o sexo feminino, no estado de São Paulo."),
+print(xtable(tabua_feminino, caption = "Tábua de vida para o sexo feminino, em 2019, no estado de São Paulo."),
       sanitize.text.function=function(x){x},
       latex.environments = "center",
       caption.placement = "top",
