@@ -67,3 +67,42 @@ print(xtable(tabua_feminino, caption = "Tábua de vida para o sexo feminino, em 
       latex.environments = "center",
       caption.placement = "top",
       include.rownames=FALSE)
+
+
+### Grafico do lx e nqx
+indicador_hash <- tibble(
+  "lx" = "Masculino",
+  "lx2" =  "Feminino",
+  "nqx" = "Masculino",
+  "nqx2" =  "Feminino",
+)
+lx_tab <- tabua %>%
+  select(x, n, lx, lx2) %>%
+  pivot_longer(cols = c(lx, lx2)) %>%
+  mutate(name = unname(unlist(indicador_hash[name]))) %>%
+  rename_all(~ c("x", "n", "Sexo", "lx"))
+
+ggplot(data = lx_tab, aes(x = x, y = lx, colour = Sexo)) +
+  geom_line(size = 1.1) +
+  geom_point(size = 2, stroke = 0) +
+  scale_y_continuous(breaks = seq(40000,100000,10000),
+                     labels = format(seq(40000,100000,10000), scientific = FALSE)) +
+  theme_bw() +
+  theme(legend.position = 'bottom') +
+  xlab("Idade (anos)")
+
+nqx_tab <- tabua %>%
+  select(x, n, nqx, nqx2) %>%
+  pivot_longer(cols = c(nqx, nqx2)) %>%
+  mutate(name = unname(unlist(indicador_hash[name]))) %>%
+  rename_all(~ c("x", "n", "Sexo", "nqx"))
+
+ggplot(data = nqx_tab, aes(x = x, y = nqx, colour = Sexo)) +
+  geom_line(size = 1.1) +
+  geom_point(size = 2, stroke = 0) +
+  theme_bw() +
+  theme(legend.position = 'bottom') +
+  xlab("Idade (anos)")
+
+
+filter(lx)
