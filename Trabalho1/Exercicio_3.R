@@ -54,6 +54,14 @@ TeX_names <- c('$x$', '$n$', '$_{n}M_x$',
 colnames(tabua_masculino) <- TeX_names
 colnames(tabua_feminino) <- TeX_names
 
+tabua_masculino$`$_{n}M_x$` <- format(round(tabua_masculino$`$_{n}M_x$`, 4), scientific = FALSE)
+tabua_masculino$`$_nq_x$` <- format(round(tabua_masculino$`$_nq_x$`, 4), scientific = FALSE)
+tabua_masculino$`$_nq_x$` <- as.character(tabua_masculino$`$_nq_x$`)
+tabua_masculino$`$_{n}M_x$` <- as.character(tabua_masculino$`$_{n}M_x$`)
+tabua_feminino$`$_{n}M_x$` <- format(round(tabua_feminino$`$_{n}M_x$`, 4), scientific = FALSE)
+tabua_feminino$`$_nq_x$` <- format(round(tabua_feminino$`$_nq_x$`, 4), scientific = FALSE)
+tabua_feminino$`$_nq_x$` <- as.character(tabua_feminino$`$_nq_x$`)
+tabua_feminino$`$_{n}M_x$` <- as.character(tabua_feminino$`$_{n}M_x$`)
 ## Faz com que o print mostre a primeira coluna como valores inteiros
 tabua_masculino$`$x$` <- factor(tabua_masculino$`$x$`, levels = tabua_masculino$`$x$`)
 tabua_feminino$`$x$` <- factor(tabua_feminino$`$x$`, levels = tabua_feminino$`$x$`)
