@@ -13,6 +13,7 @@ ggplot(nmx, aes(x = Faixa_Etaria, y = nMx,
                 colour = Sexo, group = Sexo)) +
   geom_line(size = 1.1) +
   geom_point(size = 2, stroke = 0) +
+  scale_y_log10() +
   xlab("Faixa Etária") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5),
